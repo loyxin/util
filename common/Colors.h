@@ -1,3 +1,6 @@
+#ifndef UTIL_COMMON_COLOR_H_
+#define UTIL_COMMON_COLOR_H_
+
 #include <string>
 namespace util::common {
 
@@ -27,3 +30,4 @@ inline std::string colorStr(Color icolor, const std::string&& istr)
 
 }  // namespace color
 }  // namespace util::common
+#endif  // UTIL_COMMON_COLOR_H_

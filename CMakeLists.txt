@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.14...3.21)
-project(LoyUtil)
+
+set(PROJECT_NAME LoyUtil)
+project(${PROJECT_NAME})
 
 if(${CMAKE_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
   message(FATAL_ERROR "Source Build no allow")
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR})
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 # -----------------------------------------------------------------------------
 # Options. Turn on with 'cmake -Dtest=ON'.
@@ -21,7 +24,6 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "-Werror -Wall -Wextra")
