@@ -2,8 +2,9 @@
 #define UTIL_DESIGN_SINGLETON_H_
 
 #include <cassert>
-#include <utility>
 #include <memory>
+
+#include "common/design/Copyable.h"
 
 namespace util::common::design {
 
@@ -12,10 +13,7 @@ class Singleton final {
 public:
     Singleton() = delete;
     ~Singleton() = delete;
-    Singleton(const Singleton&) = delete;
-    Singleton(Singleton&&) = delete;
-    Singleton operator=(Singleton&&) = delete;
-    Singleton& operator=(const Singleton&) = delete;
+	NONCOPYMOVE(Singleton);
 
     static T* getPtr()
     {
@@ -25,10 +23,19 @@ public:
     template <typename... Args>
     static void newObj(Args&... args)
     {
-		assert(getPPtr()->get() == nullptr && "Have set the Sington instance");
+        assert(getPPtr()->get() == nullptr && "Have set the Sington instance");
         getPPtr()->reset(new T(std::forward<Args>(args)...));
     }
 
+    /**
+     * @brief no need to delete for free memory!!
+     * this function just for new object
+     */
+    static void deleteObj()
+    {
+        assert(getPPtr()->get() != nullptr && "no object in Singleton");
+        getPPtr()->reset(nullptr);
+    }
 
 private:
     static std::unique_ptr<T>* getPPtr()

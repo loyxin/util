@@ -15,3 +15,6 @@ endif()
 # gtest
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
+
+# spdlog
+find_package(spdlog REQUIRED)

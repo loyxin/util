@@ -4,7 +4,7 @@
 
 class MyCmdOptions : public util::cmdoptions::Options {
 public:
-    boost::program_options::options_description buildOptions() override 
+    boost::program_options::options_description buildOptions() override
     {
         boost::program_options::options_description usage;
         return usage;

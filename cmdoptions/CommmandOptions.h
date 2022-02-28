@@ -12,6 +12,9 @@ namespace util::cmdoptions {
 
 class Options {
 public:
+	Options() = default;
+	~Options() = default;
+	NONCOPYMOVE(Options);
     virtual boost::program_options::options_description buildOptions() = 0;
 
     template <common::Color color>
@@ -41,6 +44,7 @@ public:
             printHelpMsg();
         }
     }
+	NONCOPYMOVE(CommandOptions);
 
     boost::program_options::variables_map& getOpts()
     {
