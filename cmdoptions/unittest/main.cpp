@@ -13,8 +13,13 @@ public:
 
 int main(int argc, char* argv[])
 {
-    auto* test = dynamic_cast<util::cmdoptions::Options*>(new MyCmdOptions);
-    util::cmdoptions::cmdopt::newObj(test, argc, argv);
-	testing::InitGoogleTest(&argc, argv);
+    using util::cmdoptions::cmdopt;
+    using util::common::design::Singleton;
+    Singleton<MyCmdOptions>::newObj();
+    auto* test = dynamic_cast<MyCmdOptions::Options*>(Singleton<MyCmdOptions>::getPtr());
+    cmdopt::newObj(test, argc, argv);
+    std::cout << Singleton<MyCmdOptions>::getPtr() << std::endl;
+    std::cout << cmdopt::getPtr() << std::endl;
+    testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

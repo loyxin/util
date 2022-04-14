@@ -18,3 +18,5 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 # spdlog
 find_package(spdlog REQUIRED)
+
+include_directories(dbg)

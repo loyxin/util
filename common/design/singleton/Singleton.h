@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "common/design/Copyable.h"
+#include "common/memory/Alloc.h"
 
 namespace util::common::design {
 
@@ -19,9 +20,17 @@ public:
     {
         if (m_own) {
             delete ptr;
+        } else {
+            [[likely]] ptr->~T();
         }
     }
-    bool m_own = true;
+    void setOwn(bool own)
+    {
+        m_own = own;
+    }
+
+private:
+    bool m_own = false;
 };
 
 }  // namespace detail
@@ -42,14 +51,15 @@ public:
     static void newObj(Args&... args)
     {
         assert(getPPtr()->get() == nullptr && "Have set the Sington instance");
-        getPPtr()->reset(new T(std::forward<Args>(args)...));
+        auto* ptr = util::memory::SingleBuffer::getMemory(sizeof(T));
+        getPPtr()->reset(new (ptr) T(std::forward<Args>(args)...));
     }
 
     static void factoryObj(T* ptr, bool own = false)
     {
         assert(getPPtr()->get() == nullptr && "Have set the Sington instance");
         getPPtr()->reset(ptr);
-        getPPtr()->get_deleter().m_own = own;
+        getPPtr()->get_deleter().setOwn(own);
     }
 
     /**

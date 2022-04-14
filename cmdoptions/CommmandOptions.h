@@ -13,7 +13,7 @@ namespace util::cmdoptions {
 class Options {
 public:
 	Options() = default;
-	~Options() = default;
+	virtual ~Options() = default;
 	NONCOPYMOVE(Options);
     virtual boost::program_options::options_description buildOptions() = 0;
 
@@ -63,7 +63,7 @@ public:
 private:
     void init();
     void printHelpMsg();
-    std::unique_ptr<Options> m_options;
+    Options* m_options;
     boost::program_options::variables_map m_vmap;
     int m_argc;
     char** m_argv;
