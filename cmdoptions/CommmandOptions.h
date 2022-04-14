@@ -12,9 +12,9 @@ namespace util::cmdoptions {
 
 class Options {
 public:
-	Options() = default;
-	virtual ~Options() = default;
-	NONCOPYMOVE(Options);
+    Options() = default;
+    virtual ~Options() = default;
+    NONCOPYMOVE(Options);
     virtual boost::program_options::options_description buildOptions() = 0;
 
     template <common::Color color>
@@ -44,21 +44,23 @@ public:
             printHelpMsg();
         }
     }
-	NONCOPYMOVE(CommandOptions);
+    NONCOPYMOVE(CommandOptions);
 
     boost::program_options::variables_map& getOpts()
     {
         return m_vmap;
     }
 
-	template <typename T>
-    T getValue(const char* name){
-		return m_vmap[name].as<T>();
-	}
+    template <typename T>
+    T getValue(const char* name)
+    {
+        return m_vmap[name].as<T>();
+    }
 
-	bool count(const char* name) {
-		return m_vmap.count(name) != 0U;
-	}
+    bool count(const char* name)
+    {
+        return m_vmap.count(name) != 0U;
+    }
 
 private:
     void init();

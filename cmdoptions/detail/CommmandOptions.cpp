@@ -14,11 +14,11 @@ void CommandOptions::init()
     usage.add_options()("help,h", "");
     usage.add_options()("color,c", value<bool>(&(m_isColor))->default_value(true), "");
 
-	using boost::program_options::command_line_parser;
-	using boost::program_options::notify;
-	using boost::program_options::store;
-	store(command_line_parser(m_argc, m_argv).options(usage).allow_unregistered().run(), m_vmap);
-	notify(m_vmap);
+    using boost::program_options::command_line_parser;
+    using boost::program_options::notify;
+    using boost::program_options::store;
+    store(command_line_parser(m_argc, m_argv).options(usage).allow_unregistered().run(), m_vmap);
+    notify(m_vmap);
 }
 
 void CommandOptions::printHelpMsg()

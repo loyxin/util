@@ -25,7 +25,7 @@ inline std::string colorStr(Color icolor, const std::string& istr)
 }
 inline std::string colorStr(Color icolor, const std::string&& istr)
 {
-	return colorStr(icolor, istr);
+    return colorStr(icolor, istr);
 }
 
 }  // namespace color
