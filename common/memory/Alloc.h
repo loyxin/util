@@ -6,6 +6,7 @@
 #include <memory>
 #include <memory_resource>
 #include <vector>
+#include <mutex>
 
 namespace util::memory {
 namespace detail {
@@ -52,6 +53,7 @@ class ResidentBuffer {
 public:
     static void* getMemory(int64_t size)
     {
+		std::lock_guard<std::mutex> guard(s_mutex);
         constexpr auto blockSize = getSize(type);
         assert(size < blockSize);
         auto newBlockInMemory = [size]() {
@@ -75,6 +77,7 @@ public:
 private:
     inline static std::vector<std::unique_ptr<char[]>> m_memoryVec;
     inline static char* m_currentPtr{nullptr};
+	inline static std::mutex s_mutex;
 };
 
 using SingleBuffer = ResidentBuffer<detail::Little>;
