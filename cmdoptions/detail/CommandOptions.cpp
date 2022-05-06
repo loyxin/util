@@ -1,10 +1,17 @@
 
-#include "cmdoptions/CommmandOptions.h"
+#include "cmdoptions/CommandOptions.h"
 
 #include <iostream>
 
 using util::cmdoptions::CommandOptions;
 using util::common::Color;
+
+CommandOptions::~CommandOptions()
+{
+    if (count("help")) {
+        printHelpMsg();
+    }
+}
 
 void CommandOptions::init()
 {

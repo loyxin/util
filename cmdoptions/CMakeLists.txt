@@ -1,4 +1,4 @@
-set(cmdoptionssrc detail/CommmandOptions.cpp)
+set(cmdoptionssrc detail/CommandOptions.cpp)
 add_library(util_cmdoptions ${cmdoptionssrc})
 
 target_include_directories(util_cmdoptions PUBLIC ${Boost_INCLUDE_DIR})

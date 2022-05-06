@@ -7,10 +7,11 @@
 namespace util::thread {
 
 namespace detail {
-constexpr int thread_nums = 12;
+constexpr int thread_nums = 8;
 }
 
 static thread_pool pool(detail::thread_nums);
+static thread_pool print_pool(4);
 
 }  // namespace util::thread
 

@@ -38,12 +38,7 @@ public:
     {
         init();
     }
-    ~CommandOptions()
-    {
-        if (count("help")) {
-            printHelpMsg();
-        }
-    }
+    ~CommandOptions();
     NONCOPYMOVE(CommandOptions);
 
     boost::program_options::variables_map& getOpts()
