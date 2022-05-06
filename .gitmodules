@@ -1,3 +1,6 @@
 [submodule "dbg"]
 	path = dbg
 	url = https://github.com/sharkdp/dbg-macro
+[submodule "thread/detail/thread-pool"]
+	path = thread/detail/thread-pool
+	url = https://github.com/bshoshany/thread-pool
