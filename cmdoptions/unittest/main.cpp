@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "cmdoptions/CommmandOptions.h"
+#include "cmdoptions/CommandOptions.h"
 
 class MyCmdOptions : public util::cmdoptions::Options {
 public:

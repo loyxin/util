@@ -6,10 +6,10 @@
 #include "dbg.h"
 
 namespace util::common {
-class Timer {
+class TimerForTest {
 public:
-    Timer() = default;
-    ~Timer()
+    TimerForTest() = default;
+    ~TimerForTest()
     {
 #ifndef DBG_MACRO_DISABLE
         dbg("FIXME", m_time.format());

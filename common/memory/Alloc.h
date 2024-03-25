@@ -30,24 +30,6 @@ constexpr int getSize(ResidentType type)
 }
 }  // namespace detail
 
-template <size_t size = detail::maxSizeOnStack>
-class StackBuffer {
-public:
-    StackBuffer() = default;
-    ~StackBuffer() = default;
-    void* operator new(size_t) = delete;
-    void operator delete(void* ptr) = delete;
-
-    std::pmr::monotonic_buffer_resource& getPool()
-    {
-        return m_pool;
-    }
-
-private:
-    std::array<int8_t, size> m_buffer = {};
-    std::pmr::monotonic_buffer_resource m_pool{std::data(m_buffer), std::size(m_buffer)};
-};
-
 template <detail::ResidentType type>
 class ResidentBuffer {
 public:
